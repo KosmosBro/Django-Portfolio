@@ -1,0 +1,9 @@
+.content {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.login_container {
+  width: 18rem;
+  background-color: #fff;
+}
