@@ -1,21 +1,30 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
-from shop.forms import LoginForm
+from shop.forms import LoginForm, RegisterForm
 
 
 def view_home(request):
-
     """ view главной страницы. """
-
     user = request.user.get_username()
     return render(request, 'home.html', {'user': user})
 
 
+def view_register(request):
+    """ view регистрации пользователя. """
+    if request.method == 'POST':
+        user_form = RegisterForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.save()
+            return redirect('/')
+    else:
+        user_form = RegisterForm()
+    return render(request, 'register.html', {'user_form': user_form})
+
+
 def view_login(request):
-
     """ view входа в систему. """
-
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -32,3 +41,9 @@ def view_login(request):
     else:
         form = LoginForm()
         return render(request, 'log_in.html', {'form': form})
+
+
+def view_log_out(request):
+    """ view выход пользователя из системы. """
+    logout(request)
+    return redirect('/')

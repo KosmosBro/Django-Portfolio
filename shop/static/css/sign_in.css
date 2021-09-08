@@ -7,3 +7,7 @@
   width: 18rem;
   background-color: #fff;
 }
+
+.helptext{
+  visibility: hidden;
+}

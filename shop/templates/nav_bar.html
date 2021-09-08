@@ -35,7 +35,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/log_in/">Sign in</a></li>
-                            <li><a class="dropdown-item" href="/html/sign_up.html">Sign up</a></li>
+                            <li><a class="dropdown-item" href="/register/">Sign up</a></li>
                             <li>
                                 <hr class="dropdown-divider"/>
                             </li>
@@ -52,10 +52,11 @@
                     </button>
                 </ul>
                 <form class="d-flex">
-                    <div style="color: #198754; margin-right: 30px">
+                    <div style="color: #198754; margin-right: 30px; display: flex">
                         {{ user }}
-
+                        <div style=" margin-left: 20px;"><a href="/log_out/">||_Logout_||</a></div>
                     </div>
+
                     <input
                             class="form-control me-2"
                             type="search"
