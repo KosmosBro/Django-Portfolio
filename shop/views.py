@@ -2,12 +2,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from shop.forms import LoginForm, RegisterForm
+from shop.models import Product, Company
 
 
 def view_home(request):
     """ view главной страницы. """
-    user = request.user.get_username()
-    return render(request, 'home.html', {'user': user})
+    company = Company.objects.all()
+    return render(request, 'home.html', {'company': company})
+
+
+def view_product(request):
+    """ view страницы продуктов . """
+    product = Product.objects.all()
+    return render(request, 'apple.html', {'product': product})
 
 
 def view_register(request):

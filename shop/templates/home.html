@@ -16,57 +16,33 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
     ></script>
-    
-    <link rel="stylesheet" href="/static/css/home_style.css"/>
 
+    <link rel="stylesheet" href="/static/css/home_style.css"/>
 
 
 </head>
 <body>
-    {% include 'nav_bar.html' %}
+{% include 'nav_bar.html' %}
 <!-- ОСНОВНОЙ КОНТЕНТ -->
 
-<div class="container">
-  <div class="cart">
 
-    <div class="card" style="width: 18rem">
-        <img src="/static/img/dsf.png" class="card-img-top" alt="..."/>
-        <div class="card-body">
-            <h5 class="card-title">Aple</h5>
-            <p class="card-text">
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </p>
-            <a href="/html/apple.html" class="btn btn-primary">Go to</a>
+<form class="cart" action="/home/" method="post">
+    {% for company in company %}
+    <div class="cart">
+        <div class="card" style="width: 18rem">
+            <img src="{{ MEDIA_URL }}{{ company.img }}" class="card-img-top" alt="..."/>
+            <div class="card-body">
+                <h5 class="card-title">{{ company.title }}</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a href="/product/" class="btn btn-primary">Go to</a>
+            </div>
         </div>
     </div>
-
-    <div class="card" style="width: 18rem;">
-        <img src="/static/img/dsf.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Asus</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="/html/asus.html" class="btn btn-primary">Go to</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <img src="/static/img/dsf.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Lenovo</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="/html/lenovo.html" class="btn btn-primary">Go to</a>
-        </div>
-    </div>
-</div>
-<div>
-
-</div>
-</div>
-
-
+    {% endfor %}
+</form>
 
 </body>
 </html>

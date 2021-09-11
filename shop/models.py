@@ -3,6 +3,7 @@ from django.db import models
 
 class Company(models.Model):
     """ Сущность используется для добавления компании в модель _Product_ """
+    img = models.ImageField(upload_to='images/', blank=True, verbose_name="Картинка компании", max_length=900)
     title = models.CharField(max_length=100, verbose_name='Компания')
 
     def __str__(self):
@@ -11,6 +12,10 @@ class Company(models.Model):
     class Meta:
         verbose_name = "Компания"
         verbose_name_plural = "Компании"
+
+    @property
+    def get_products(self):
+        return Product.objects.filter(company__title=self.title)
 
 
 class Product(models.Model):
