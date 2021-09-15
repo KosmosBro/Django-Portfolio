@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from shop.forms import LoginForm, RegisterForm
 from shop.models import Product, Company
@@ -11,10 +11,13 @@ def view_home(request):
     return render(request, 'home.html', {'company': company})
 
 
-def view_product(request):
+def view_product(request, slug):
     """ view страницы продуктов . """
-    product = Product.objects.all()
-    return render(request, 'apple.html', {'product': product})
+
+    product = Product.objects.filter(company__slug=slug)
+    # product = Product.objects.all()
+
+    return render(request, 'product.html', {'product': product})
 
 
 def view_register(request):
