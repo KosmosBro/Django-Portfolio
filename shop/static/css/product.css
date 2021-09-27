@@ -1,0 +1,87 @@
+body {
+    background: rgb(180, 175, 175);
+    font-family: "Playfair Display", serif;
+  }
+  
+  .container {
+    max-width: 1770px;
+    margin: 0px, auto;
+  }
+  
+  .footer_container {
+    padding-top: 25px;
+  }
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    background: #f7f7f7;
+    width: 100%;
+  }
+  
+  .cart {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .card {
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media screen and (max-width: 1170px) {
+    .container {
+      max-width: 970px;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .container {
+      max-width: 750px;
+    }
+  }
+  @media screen and (max-width: 533px) {
+    .container {
+      max-width: none;
+    }
+    .cart {
+      display: grid;
+    }
+  }
+  
+  .navbar-dark .navbar-brand {
+    color: #000;
+  }
+  .navbar-brand {
+    font-size: 25px;
+  }
+  .form-control {
+    background-color: #efebeb;
+  }
+  .navbar-dark .navbar-nav .nav-link:focus,
+  .navbar-dark .navbar-nav .nav-link:hover {
+    color: #198754;
+  }
+  
+  .btn-primary {
+    background-color: #173766;
+  }
+  .card-title {
+    text-decoration: underline;
+    color: #173766;
+  }
+  
+  #cart {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+  #cart2 {
+    width: max-content;
+  }
+
+
+#go {
+    position: absolute;
+    bottom: 10px;
+    left: 70%;
+}

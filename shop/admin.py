@@ -1,9 +1,10 @@
 from django.contrib import admin
-from modeltranslation.admin import TranslationAdmin
 
-from shop.models import Product, Company
+from shop.models import Product, Company, Cart, CartContent
 
 admin.site.register(Company)
+admin.site.register(Cart)
+admin.site.register(CartContent)
 
 
 @admin.register(Product)

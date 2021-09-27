@@ -20,4 +20,7 @@ class RegisterForm(UserCreationForm):
         fields = ('username', 'email')
 
 
-
+class SearchForm(forms.Form):
+    # required отвечает за то является ли поле обязательным
+    search = forms.CharField(required=False,
+                             label='', )
