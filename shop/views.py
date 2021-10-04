@@ -1,11 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.postgres.search import SearchVector
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 
-from shop.forms import LoginForm, RegisterForm, SearchForm
-from shop.models import Product, Company, CartContent, Cart, UserProfile
+from shop.forms import LoginForm, RegisterForm
+from shop.models import Product, Company, CartContent, Cart
 
 
 def view_home(request):
@@ -77,7 +76,7 @@ class MasterView(View):
     def get_cart(self):
         if self.request.user.is_authenticated:
             user_id = self.request.user.id
-            product_items = Product(id=self.request.COOKIES.get('product_id'))
+            product = Product(id=self.request.COOKIES.get('product_id'))
             qty = 1
             try:
                 cart = Cart.objects.get(user_id=user_id)
@@ -85,7 +84,7 @@ class MasterView(View):
                 cart = Cart(user_id=user_id,
                             total_cost=0)
                 cart.save()
-                cart_content, _ = CartContent.objects.get_or_create(cart=cart, product=product_items)
+                cart_content, _ = CartContent.objects.get_or_create(cart=cart, product=product)
                 cart_content.qty = qty
                 cart_content.save()
 
@@ -117,13 +116,13 @@ class CartView(MasterView):
         return render(request, 'cart.html', context)
 
     def post(self, request):
-        product_items = Product.objects.get(id=request.POST.get('product_id'))
+        product = Product.objects.get(id=request.POST.get('product_id'))
         cart = self.get_cart()
         quantity = request.POST.get('qty')
-        cart_content, _ = CartContent.objects.get_or_create(cart=cart, product=product_items)
+        cart_content, _ = CartContent.objects.get_or_create(cart=cart, product=product)
         cart_content.save()
-        response = self.get_cart_records(cart, redirect('/#product-{}'.format(product_items.id)))
-        product_id = product_items.id
+        response = self.get_cart_records(cart, redirect('/#product-{}'.format(product.id)))
+        product_id = product.id
         cart_content.qty = quantity
         response.set_cookie('qty', quantity)
         response.set_cookie('product_id', product_id)

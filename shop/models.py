@@ -67,7 +67,7 @@ class Cart(models.Model):
 class CartContent(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    qty = models.IntegerField(default=1)
+    qty = models.IntegerField(null=True, default=0)
 
     class Meta:
         verbose_name = "Контент корзины"

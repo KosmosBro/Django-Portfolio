@@ -27,7 +27,7 @@
 
 <!-- ОСНОВНОЙ КОНТЕНТ -->
 
-<form class="cart" action="/cart/" method="post">
+<form class="cart" action="/cart/" method="get">
     {% for product in product %}
     <div class="cart">
         <div class="card" style="width: 18rem">
@@ -36,12 +36,12 @@
                 <h5 class="card-title">{{ product.title }}</h5>
                 <p class="card-text">{{ product.descriptions }}</p>
                 <p class="card-text">{{ product.price }} $</p>
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <label>
-                        <input type="number" name="qty" value="{{ CartContent.qty }}">
-                    </label>
-                    <button type="submit">Добавить в корзину</button>
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <label>
+                    <input type="number" name="qty" value="{{ CartContent.qty }}">
+                </label>
+                <button type="submit">Добавить в корзину</button>
             </div>
         </div>
     </div>
