@@ -9,4 +9,4 @@ admin.site.register(CartContent)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'price']
+    list_display = ['title', 'price']

@@ -9,6 +9,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    class Meta:
+        unique_together = ('user', 'avatar')
+
 
 class Company(models.Model):
     """ Сущность используется для добавления компании в модель _Product_ """
@@ -23,6 +26,7 @@ class Company(models.Model):
     class Meta:
         verbose_name = "Компания"
         verbose_name_plural = "Компании"
+        unique_together = ('title', 'slug')
 
 
 class Product(models.Model):
@@ -38,6 +42,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
+        unique_together = ('title', 'price')
 
 
 class Cart(models.Model):
@@ -72,3 +77,5 @@ class CartContent(models.Model):
     class Meta:
         verbose_name = "Контент корзины"
         verbose_name_plural = "Контент корзины"
+        unique_together = ('cart', 'qty')
+
